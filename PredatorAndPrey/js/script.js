@@ -1,0 +1,1 @@
+document.write("<h1>", "Best game", "<br>");

@@ -1,3 +1,28 @@
-h1{
-	color: chocolate;
+body{
+	margin: 0;
+	padding: 0;
+}
+.forest{
+	height: 100vh;
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(50, 1fr);
+	grid-auto-rows: 1fr;
+	grid-column-gap: 3px;
+	grid-row-gap: 3px;
+}
+.forest div{
+	width: 15px;
+	height: 15px;
+	border: 1px solid black;
+	border-radius: 3px;
+	background-color: rgb(222, 218, 218);
+	transition: all 0.3s linear;
+}
+.forest div:hover{
+	transform: scale(1.1);
+}
+img{
+	width: 15px;
+	height: 15px;
 }

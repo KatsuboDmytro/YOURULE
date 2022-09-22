@@ -1,2 +1,2 @@
 # YOURULE
-For projects OOP
+For OOP projects

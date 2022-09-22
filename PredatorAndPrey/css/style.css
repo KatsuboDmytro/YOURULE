@@ -1,6 +1,5 @@
 body{
-	margin: 0;
-	padding: 0;
+	background-color: rgb(63, 139, 64);
 }
 .forest{
 	height: 100vh;
@@ -12,17 +11,8 @@ body{
 	grid-row-gap: 3px;
 }
 .forest div{
-	width: 15px;
-	height: 15px;
-	border: 1px solid black;
-	border-radius: 3px;
-	background-color: rgb(222, 218, 218);
-	transition: all 0.3s linear;
-}
-.forest div:hover{
-	transform: scale(1.1);
-}
-img{
-	width: 15px;
-	height: 15px;
+	width: 95%;
+	height: 95%;
+	border: none;
+	background-color: rgb(19, 139, 49);
 }

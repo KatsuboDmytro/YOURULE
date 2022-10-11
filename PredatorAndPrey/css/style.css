@@ -1,9 +1,72 @@
-h1{
-	color: chocolate;
+:root{
+	font-size: 10px;
+	line-height: 10px;
+	font-weight: 400;
 }
-h2{
-	color: chocolate;
+body{
+	margin: 0;
+	padding: 0;
+	background-color: #000;
 }
-h3{
-	color: chocolate;
+
+.dark p, a{
+	color: white;
+	font-family: 'Prompt', sans-serif;
+	text-align: center;
+	font-size: 3.2rem;
+	line-height: 3.2rem;
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid orange; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .5rem; /* Adjust as needed */
+}
+.dark p:first-child{
+	margin-top: 200px;
+	width: 524px;
+  animation: typingOne 7s steps(40, end), blink-caret .75s step-end;
+}
+.dark p:nth-child(2){
+  margin-top: 20px;
+	width: 376px;
+	opacity: 0;
+  animation: typingSec 7s steps(40, end) 8s, blink-caret .75s step-end, opacity 2s linear infinite 15s;
+}
+.dark a{
+	color: white;
+	font-family: 'Prompt', sans-serif;
+	text-align: center;
+	font-size: 2.4rem;
+	margin-left: 42%;
+	width: 200px;
+	position: relative;
+	top: 200px;
+	opacity: 0;
+	animation: opacityForLink 4s linear 16s 1;
+}
+/* The typing effect */
+@keyframes typingOne {
+  from { width: 0; opacity: 0;}
+	1% {opacity: 100%;}
+  to { width: 524px; opacity: 100%;}
+}
+@keyframes typingSec {
+  from { width: 0; opacity: 0;}
+	1% {opacity: 100%;}
+  to { width: 376px; opacity: 100%;}
+}
+@keyframes opacity {
+	from { opacity: 100%;}
+  to { opacity: 100%;}
+}
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: orange; }
+}
+
+/*Opacity effect*/
+@keyframes opacityForLink {
+	from { opacity: 0;}
+  to { opacity: 100%;}
 }

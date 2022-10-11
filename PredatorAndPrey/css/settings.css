@@ -1,0 +1,67 @@
+:root{
+	font-size: 10px;
+	line-height: 10px;
+	--font: 'Bungee Spice';
+	font-weight: 400;
+	--gradient: linear-gradient(180deg, rgba(253, 209, 0, 0.99) -6.98%, rgba(208, 37, 0, 0.99) 57.18%, rgba(239, 51, 6, 0.582862) 108.13%);
+	--brown: #CD452D;
+	--orange: #DF6401;
+	--red: #D73A18;;
+	--green: #42FF00;
+}
+body{
+	margin: 0;
+	padding: 0;
+}
+.container{
+	width: 95%;
+	margin: 0 auto;
+}
+
+.info_location{
+	background-image: url('../img/IndoBg.png');
+	background-size: 100% 100vh;
+	background-repeat: no-repeat;
+	overflow: hidden;
+}
+.head_part{
+	display: flex;
+	justify-content: space-around;
+	width: 75%;
+	margin-right: 28%;
+}
+.head_part header{
+	font-family: var(--font);
+	padding-top: 50px;
+	width: 50%;
+	font-size: 9.6rem;
+	line-height: 11.5rem;
+	text-align: center;
+	text-shadow: 0px 9px 8px rgba(0, 0, 0, 0.25);
+}
+.head_part a button{
+	width: 200px;
+	height: 60px;
+	margin-top: 50px;
+	background: white;
+	border: none;
+	box-shadow: 0px 9px 5px rgba(0, 0, 0, 0.25);
+	border-radius: 55px;
+	font-family: var(--font);
+	font-size: 4rem;
+	line-height: 4.8rem;
+	color: var(--orange);
+}
+.settings_block{
+	width: 70%;
+	height: 200px;
+	margin: 0 auto;
+	margin-top: 30px;
+	margin-bottom: 209px;
+	background: rgba(255, 255, 255, 0.2);
+	border-radius: 16px;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(5px);
+	border: 1px solid rgba(255, 255, 255, 0.3);
+}

@@ -1,0 +1,131 @@
+:root{
+	font-size: 10px;
+	line-height: 10px;
+	--font: 'Bungee Spice';
+	font-weight: 400;
+	--gradient: linear-gradient(180deg, rgba(253, 209, 0, 0.99) -6.98%, rgba(208, 37, 0, 0.99) 57.18%, rgba(239, 51, 6, 0.582862) 108.13%);
+	--brown: #CD452D;
+	--orange: #DF6401;
+	--red: #D73A18;;
+	--green: #42FF00;
+}
+body{
+	margin: 0;
+	padding: 0;
+}
+.container{
+	width: 95%;
+	margin: 0 auto;
+}
+
+.info_location{
+	background-image: url('../img/IndoBg.png');
+	background-size: 100% 120vh;
+	background-repeat: no-repeat;
+	overflow: hidden;
+}
+.head_part{
+	display: flex;
+	justify-content: space-around;
+	width: 75%;
+	margin-left: 28%;
+}
+.head_part header{
+	font-family: var(--font);
+	padding-top: 50px;
+	width: 50%;
+	font-size: 9.6rem;
+	line-height: 11.5rem;
+	text-align: center;
+	text-shadow: 0px 9px 8px rgba(0, 0, 0, 0.25);
+}
+.head_part a button{
+	width: 200px;
+	height: 60px;
+	margin-top: 50px;
+	background: white;
+	border: none;
+	box-shadow: 0px 9px 5px rgba(0, 0, 0, 0.25);
+	border-radius: 55px;
+	font-family: var(--font);
+	font-size: 4rem;
+	line-height: 4.8rem;
+	color: var(--orange);
+}
+
+.info_blocks{
+	padding-top: 25px;
+	padding-bottom: 100px;
+	display: flex;
+	justify-content: space-around;
+}
+.info_blocks .block{
+	width: 30%;
+}
+.info_blocks .block:nth-child(1){
+	background: rgba(30, 88, 29, 0.51);
+	border-radius: 16px;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(5px);
+}
+.info_blocks .block:nth-child(2){
+	background: rgba(189, 157, 43, 0.49);
+	border-radius: 16px;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(5px);
+}
+.info_blocks .block:nth-child(3){
+	background: rgba(29, 127, 149, 0.5);
+	border-radius: 16px;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(5px);
+}
+
+.block{
+	padding: 15px;
+	font-family: 'Prompt', sans-serif;
+}
+.small_title{
+	font-size: 2rem;
+	line-height: 2.4rem;
+	text-align: center;
+}
+.small_subtitle{
+	font-size: 2rem;
+	line-height: 2.4rem;
+	color: var(--orange);
+	padding-top: 20px;
+}
+.types_of_them{
+	display: flex;
+	justify-content: space-around;
+}
+.predator, .prey{
+	padding-top: 10px;
+}
+.who_is_it{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+.who_is_it img{
+	height: 22px;
+}
+.text{
+	font-size: 2rem;
+}
+.description{
+	padding-top: 10px;
+}
+.description div{
+	color: white;
+}
+.description div span{
+	color: var(--green);
+}
+.description div, .description div span{
+	padding-bottom: 5px;
+}

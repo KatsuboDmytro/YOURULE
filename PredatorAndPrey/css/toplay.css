@@ -1,0 +1,79 @@
+:root{
+	font-size: 10px;
+	line-height: 10px;
+	--font: 'Bungee Spice';
+	font-weight: 400;
+	--gradient: linear-gradient(180deg, rgba(253, 209, 0, 0.99) -6.98%, rgba(208, 37, 0, 0.99) 57.18%, rgba(239, 51, 6, 0.582862) 108.13%);
+	--brown: #CD452D;
+	--orange: #DF6401;
+	--red: #D73A18;;
+	--green: #42FF00;
+}
+body{
+	margin: 0;
+	padding: 0;
+	font-family: var(--font);
+	background-image: url('../img/mainBg.png');
+	background-size: 100% 120vh;
+	background-repeat: no-repeat;
+	overflow: hidden;
+}
+.container{
+	width: 95%;
+	margin: 0 auto;
+}
+.main_location header{
+	padding-top: 50px;
+	width: 50%;
+	font-size: 9.6rem;
+	line-height: 11.5rem;
+	margin-left: 26%;
+	text-align: center;
+	text-shadow: 0px 9px 8px rgba(0, 0, 0, 0.25);
+}
+.subtitle{
+	font-size: 1.6rem;
+	margin-left: 43%;
+	text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.main_buttons{
+	display: flex;
+	justify-content: space-between;
+	width: 30%;
+	margin: 100px auto;
+}
+.main_buttons a:nth-child(2) button{
+	background-color: var(--brown);
+	width: 150px;
+	height: 80px;
+	border: none;
+	border-radius: 30px;
+}
+.main_buttons a:nth-child(1) button, .main_buttons a:nth-child(3) button{
+	background-color: var(--brown);
+	width: 80px;
+	height: 80px;
+	border: none;
+	border-radius: 50%;
+}
+.main_buttons a:nth-child(1) button, .main_buttons a:nth-child(2) button{
+	color: white;
+	font-family: 'Prompt', sans-serif;
+	text-align: center;
+	font-size: 3.2rem;
+}
+.main_buttons a:nth-child(3) button img{
+	animation: rotation 10s linear infinite;
+}
+@keyframes rotation {
+	from { transform: rotate(0);}
+	50% { transform: rotate(180deg);}
+	to { transform: rotate(360deg);}
+}
+.main_buttons a button{
+	box-shadow: 0px 9px 5px rgba(0, 0, 0, 0.25);
+}
+.main_buttons a{
+	position: relative;
+	top: 9px;
+}

@@ -1,125 +1,164 @@
-class Animals {
-	constructor () {
-		arguments
-		this.Predator = Predator;
-		this.Prey = Prey;
-	}
-}
+let conditions = ["normal", "eating", "being eaten", "haunting", "being haunted",
+"reproducing", "newborn", "died"];
 
-class Predator extends Animals {
-	constructor () {
-		arguments
-		this.wolf = wolf;
-		this.bear = bear;
-		this.fox = fox;
-		this.lynx = lynx;
-  }
-}
-/*
-	speed: 3/1sec
-	vision: 4
-	damage: 40
-	eating: floak - deer, boark, horse; single - rabbit
-	satisfied: 5sec after eating
-	hunger: -3hp every 1sec
-	reproduction: eat +75, health +80, single wolf
-	fertilization: 2sec
-	die: eat >10 or health >10  or after reproduction 5sec
-	born: after 3sec fertilization, 5sec near parent -> adult wolf
-*/
-class Wolf extends Predator {
-	constructor () {
-		arguments
-		super(wolf);
-  }
-	generateRandomIntegerInRange(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-	}
-
-	healthBar(damage){
-		let health = 100;
-		health -= damage;
-	}
-
-	eatBar(eat){
-		let eatProgtress = 0;
-		eatProgtress += eat;
-	}
-
-	speed(){
-		setInterval(function () {
-			return generateRandomIntegerInRange(2, 3);
-		}, 1000);
-	};
-
-	vision(){
-		if(this.wolf) dosmth;//??
-	}
-
-	damage(){
-		if(this.wolf.position == this.deer.position) this.deer.healthBar(40);
-	}
-
-	eating(){
-		if(this.vision()){
-			if(this.wolf.position/*??*/ == this.deer.position && this.deer){
-				this.damage();
-				this.reproduction(eat);
-			}
+class Animal {
+	constructor (type, id, sex, speed, health, satiety, vision, pregnancyTime) {
+		this.type = type;
+		this.id = id;
+		this.sex = sex;
+		this.speed = speed;
+		this.health = health;
+		this.satiety = satiety;
+		this.vision = vision;
+		this.condition = "normal";
+		if(sex === "woman") {
+			this.pregnancyTime = pregnancyTime;
 		}
 	}
 
-	satisfied(){
-		if(this.eating()) dosmth;//delay 5 sec
+	static randomNumb(min, max) {
+		return Math.random() * (max - min) + min;
 	}
 
-	hunger(){
-		if(!this.eating) //more than 5sec
-			eatBar(3); //every 1 sec
+	static receiveHealth(amount) {
+		this.health += amount;
+		if(this.health >= 100) this.health = 100;
 	}
 
-	reproduction(){
-		if(eatBar() > 75 && healthBar() > 80 && this.wolf)
-		/*let newWolf = new Wolf();*/dosmth;
+	static loseHealth(amount) {
+		this.health -= amount;
+		if(this.health <= 0) this.health = 0;
 	}
+
+	static receiveSatiety(amount) {
+		this.satiety += amount;
+		if(this.satiety >= 100) this.satiety = 100;
+	}
+
+	static loseSatiety(amount) {
+		this.satiety -= amount;
+		if(this.satiety <= 0) this.satiety = 0;
+	}
+
+	//кожен має різну швидкість тому щоб було чесно зміну робимо коефіцієнтом
+	static changeSpeed(amount) {
+		this.speed = Math.round(this.speed * amount);
+	}
+
+	static changeCondition(condition) {
+		this.condition = condition;
+	}
+
+	//.........
+
+}
+/*--------------------------------Predators-------------------------------- */
+class Predator extends Animal {
+	constructor (id, sex, speed, health, satiety, vision, damage, hauntsFor) {
+		super("predator", id, sex, speed, health, satiety, vision, 10, hauntsFor);
+		this.damage = damage;
+  }
 	
-	fertilization(){
-		//wait 2 sec
+	static speed(speed){
+		Animal.changeSpeed(speed);
+	}
+
+	static damage(dmg){
+		Animal.loseHealth(dmg);
+	}
+
+	static vision(){
+
+	}
+	//......
+}
+/*-----------Fox-----------*/
+class Fox extends Predator {
+	constructor(id, sex) {
+		super(id, sex, 5, 100, 20, 6, 10, ["rabbit"]);
+	}
+
+	born(){
+		var bornedFoxes = 0;
+		bornedFoxes++;
+		var fox = new Fox(bornedFoxes);
 	}
 
 	die(){
-		if(eatBar <= 10 || healthBar <= 10 || /*after*/this.reproduction) delete this.wolf;
+		bornedFoxes--;
+		delete Fox.bornedFoxes;
 	}
 
-	born(){//born: after 3sec fertilization, 5sec near parent -> adult wolf
-		if(/*after*/this.fertilization){
-			this.newWolf.position -= this.wolf.position;
-		}
+	foxHealth(){
+		if(Predator.damage() == true) Animal.loseHealth(Animal.randomNumb(10, 20));
+		else if(Predator.damage() == false) Animal.receiveHealth(1);
 	}
 
-	grewUp(){
-		if(/*5sec near his parent*/this.newWolf) this.newWolf == this.wolf;
+	satiety(){
+
+	}
+
+	vision(){
+
+	}
+	//......
+}
+
+/*--------------------------------Preys-------------------------------- */
+class Prey extends Animal {
+	constructor (id, sex, speed, health, satiety, vision, hauntedBy) {
+		super("prey", id, sex, speed, health, satiety, vision, 4, hauntedBy);
+	}
+
+	static speed(speed){
+		Animal.changeSpeed(speed);
+	}
+
+}
+
+class Rabbit extends Prey {
+	constructor(id, sex) {
+		super(id, sex, 3, 40, 15, 5, ["fox"]);
+	}
+
+	born(){
+		var bornedRabbits = 0;
+		bornedRabbits++;
+		var fox = new Fox(bornedRabbits);
+	}
+
+	die(){
+		bornedRabbits--;
+		delete Fox.bornedRabbits;
+	}
+
+	rabbitHealth(){
+		if(Predator.damage() == true) Animal.loseHealth(Animal.randomNumb(20, 40));
+	}
+
+	satiety(){
+		if(Apple.vision() == true) Apple.eatTheApple();
+	}
+
+	vision(){
+
+	}
+	//......
+}
+
+class Apple{
+	constructor(id){
+		this.id = id;
+	}
+
+	static vision(){
+
+	}
+
+	static eatTheApple(){
+		Animal.receiveHealth(10);
 	}
 }
 
-class Prey extends Animals {
-	constructor () {
-		arguments
-		this.deer = deer;
-		this.boar = boar;
-		this.rabbit = rabbit;
-		this.horse = horse;
-  }
-}
-/*
-	speed: 3/1.5sec
-	vision: 3
-	damage: 10
-	eating: apple
-	satisfied: 5sec after eating
-	hunger: -3hp every 1sec
-	reproduction: eat +75, health +70, single deer
-	fertilization: 2sec
-	die: eat >10 or health >10  or after reproduction 5sec
-	born: after 3sec fertilization, 5sec near parent -> adult deer
-*/
+/*	Помітка*/
+//	static - щоб клас можна було використовувати в інших класах

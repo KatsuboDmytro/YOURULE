@@ -40,7 +40,7 @@ class Animal {
 		if(this.satiety <= 0) this.satiety = 0;
 	}
 
-	//кожен має різну швидкість тому щоб було чесно зміну робимо коефіцієнтом
+	/*кожен має різну швидкість тому щоб було чесно зміну робимо коефіцієнтом*/
 	static changeSpeed(amount) {
 		this.speed = Math.round(this.speed * amount);
 	}
@@ -49,7 +49,7 @@ class Animal {
 		this.condition = condition;
 	}
 
-	//.........
+	/*.........*/
 
 }
 /*--------------------------------Predators-------------------------------- */
@@ -70,7 +70,7 @@ class Predator extends Animal {
 	static vision(){
 
 	}
-	//......
+	/*......*/
 }
 /*-----------Fox-----------*/
 class Fox extends Predator {
@@ -101,7 +101,7 @@ class Fox extends Predator {
 	vision(){
 
 	}
-	//......
+	/*......*/
 }
 
 /*--------------------------------Preys-------------------------------- */
@@ -143,7 +143,7 @@ class Rabbit extends Prey {
 	vision(){
 
 	}
-	//......
+	/*......-*/
 }
 
 class Apple{
@@ -161,4 +161,4 @@ class Apple{
 }
 
 /*	Помітка*/
-//	static - щоб клас можна було використовувати в інших класах
+/*	static - щоб клас можна було використовувати в інших класах*/

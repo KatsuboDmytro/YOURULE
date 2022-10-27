@@ -1,6 +1,38 @@
 let conditions = ["normal", "eating", "being eaten", "haunting", "being haunted",
 "reproducing", "newborn", "died"];
 
+var animalCount = 0, bornedFoxes = 0;
+
+class Manager{
+	constructor(){
+		this.map = [];
+		this.foxes = [];
+		this.rabbits = [];
+	}
+
+	static randomNumb(min, max) {
+		return Math.random() * (max - min) + min;
+	}
+
+	static addAnimal(animal){
+		this.map.push(animal);
+	}
+
+	static amountOfAnimals(){
+		console.log("Alive animals = " + animalCount);
+	}
+
+	static checkHealth(){
+		setInterval(()=>{
+			for(let i = 0; i < this.animals.length; i++){
+				if(Fox.health <= 70) Fox.vision(i);//якщо здоров'я менше 70 - починає бачити, а до цього ходить сліпий виходить)
+			}
+		},1000);
+	}
+}
+
+var manager = new Manager();
+
 class Animal {
 	constructor (type, id, sex, speed, health, satiety, vision, pregnancyTime) {
 		this.type = type;
@@ -15,11 +47,7 @@ class Animal {
 			this.pregnancyTime = pregnancyTime;
 		}
 	}
-
-	static randomNumb(min, max) {
-		return Math.random() * (max - min) + min;
-	}
-
+//червоний флажок після переносу randomNumb в Manager
 	static receiveHealth(amount) {
 		this.health += amount;
 		if(this.health >= 100) this.health = 100;
@@ -55,13 +83,9 @@ class Animal {
 /*--------------------------------Predators-------------------------------- */
 class Predator extends Animal {
 	constructor (id, sex, speed, health, satiety, vision, damage, hauntsFor) {
-		super("predator", id, sex, speed, health, satiety, vision, 10, hauntsFor);
-		this.damage = damage;
+		super("predator", id, sex, speed, health, satiety, vision, damage, hauntsFor);//замість 10 поставив damage, боо видававло помилку
+		this.damage = 10;
   }
-	
-	static speed(speed){
-		Animal.changeSpeed(speed);
-	}
 
 	static damage(dmg){
 		Animal.loseHealth(dmg);
@@ -72,16 +96,18 @@ class Predator extends Animal {
 	}
 	/*......*/
 }
+
 /*-----------Fox-----------*/
 class Fox extends Predator {
 	constructor(id, sex) {
 		super(id, sex, 5, 100, 20, 6, 10, ["rabbit"]);
 	}
 
-	born(){
-		var bornedFoxes = 0;
+	born(){//в анімал, краще хай тут залишається, бо воно для кожної тварини робить ++
+		animalCount++;
 		bornedFoxes++;
-		var fox = new Fox(bornedFoxes);
+		var fox = new Fox(animalCount, "woman");
+		manager.addAnimal(fox);
 	}
 
 	die(){
@@ -90,7 +116,7 @@ class Fox extends Predator {
 	}
 
 	foxHealth(){
-		if(Predator.damage() == true) Animal.loseHealth(Animal.randomNumb(10, 20));
+		if(Predator.damage() == true) Animal.loseHealth(Manager.randomNumb(10, 20));
 		else if(Predator.damage() == false) Animal.receiveHealth(1);
 	}
 
@@ -98,10 +124,22 @@ class Fox extends Predator {
 
 	}
 
-	vision(){
-
+	vision(predatorPosition){
+		let vision = 3;
+		for(let i = 0; i < Manager.foxes.length; i++){//ітеруємось по довжині масиву усіх лисиць
+			if(Manager.foxes[predatorPosition] == i){//знаходимо потрібну лисичку
+				for(let k = predatorPosition; k < predatorPosition + vision; k++){//дивимось на три кроки вперед від позиції лисички
+					if(k == Manager.rabbits[k]) delete Manager.rabbits[k];//якщо бачимо кролика - їмо
+					else if(k != Manager.rabbits[k]){//якщо не бачимо
+						for(let g = predatorPosition; g < predatorPosition - vision; g++){//обертаємо голову і шукаємо там поїсти
+							if(g == Manager.rabbits[g]) delete Manager.rabbits[g];//якщо є - їмо
+						}
+					}
+					else Manager.foxes[predatorPosition]++;//йдемо вперед якщо нічого ніде не побачили
+				}
+			}
+		}
 	}
-	/*......*/
 }
 
 /*--------------------------------Preys-------------------------------- */
@@ -133,7 +171,7 @@ class Rabbit extends Prey {
 	}
 
 	rabbitHealth(){
-		if(Predator.damage() == true) Animal.loseHealth(Animal.randomNumb(20, 40));
+		if(Predator.damage() == true) Animal.loseHealth(Manager.randomNumb(20, 40));
 	}
 
 	satiety(){
